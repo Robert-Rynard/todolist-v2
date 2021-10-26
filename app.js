@@ -3,8 +3,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const _ = require("lodash");
+const dotenv = require("dotenv");
 
 const app = express();
+dotenv.config();
 
 app.set("view engine", "ejs");
 
@@ -12,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 mongoose.connect(
-  "mongodb+srv://admin-robert:FRyW79kToo5BFlVF@cluster0.a1bla.mongodb.net/todolistDB?retryWrites=true&w=majority"
+  `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.a1bla.mongodb.net/todolistDB?retryWrites=true&w=majority`
 );
 
 // Mongoose Schemas
